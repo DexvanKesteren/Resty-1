@@ -30,7 +30,7 @@ html, body {
   left: 50%;
   bottom: 6vh;
   transform: translateX(-50%);
-  max-width: min(90vw, 720px);
+  max-width: min(95vw, 900px);
   background: rgba(17, 24, 39, 0.92); /* #111827 met beetje transparantie */
   border: 1px solid #243049;
   border-radius: 14px;
