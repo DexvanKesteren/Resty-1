@@ -14,8 +14,6 @@ html, body {
   position: relative;
   width: 100vw;
   height: 100vh;
-  padding-bottom: 10vh;
-  background-colour: white;
 }
 
 /* Resty gezicht (jouw foto) */
@@ -38,6 +36,7 @@ html, body {
   border-radius: 14px;
   padding: 14px 16px;
   backdrop-filter: blur(4px);
+  margin-bottom: 10px;
 }
 .bubble.hidden { display: none; }
 
