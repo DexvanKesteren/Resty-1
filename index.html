@@ -8,7 +8,6 @@
 </head>
 <body>
 
-  <!-- Unlock overlay -->
   <div id="unlock" class="unlock">
     <div class="unlock-box">
       <h1>Activeer Resty</h1>
@@ -19,11 +18,9 @@
     </div>
   </div>
 
-  <!-- Eén enkel scherm: alleen de foto met een spraakwolkje erover -->
   <main class="stage">
     <img id="faceImg" class="face" src="img/face.jpg" alt="Resty gezicht">
 
-    <!-- Spraakwolkje (alle output en vragen komen hier) -->
     <div id="bubble" class="bubble hidden">
       <div id="bubbleText" class="bubble-text">Activeer Resty met de slider om te starten.</div>
       <div id="answers" class="answers"></div>
@@ -31,7 +28,6 @@
     </div>
   </main>
 
-  <!-- Teachable Machine libs (onzichtbaar gebruikt) -->
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
   <script src="scripts/script.js"></script>
