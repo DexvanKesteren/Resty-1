@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // ==== Elementen ====
   const unlockEl    = document.getElementById('unlock');
   const unlockRange = document.getElementById('unlockRange');
   const faceImg     = document.getElementById('faceImg');
@@ -7,13 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const bubbleText  = document.getElementById('bubbleText');
   const answersEl   = document.getElementById('answers');
 
-  // ==== Staat ====
   let isUnlocked = false;
-  let mode = 'idle'; // 'idle' | 'sport' | 'rest'
+  let mode = 'idle';
   let motivationIndex = 0;
   let motivationTimer = null;
 
-  // ==== Content ====
   const THRESHOLD = 0.50;
   const motivationLines = [
     'Goed zo, je bent lekker bezig!',
@@ -36,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
   let restIndex = 0;
 
-  // ==== UI helpers ====
   function setLine(text) {
     bubbleText.textContent = text;
     answersEl.innerHTML = '';
@@ -101,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ==== Slide-to-unlock ====
   function tryUnlock() {
     const v = Number(unlockRange.value);
     if (v >= 95 && !isUnlocked) {
@@ -110,14 +105,13 @@ document.addEventListener('DOMContentLoaded', () => {
       faceImg.style.display = 'block';
       bubble.classList.remove('hidden');
       setLine('Resty is wakker. Herkenning start...');
-      initTM(); // start automatisch
+      initTM(); 
     }
   }
   unlockRange.addEventListener('input', tryUnlock);
   unlockRange.addEventListener('change', tryUnlock);
 
-  // ==== Teachable Machine (Pose) – onzichtbaar ====
-  const URL = "./my_model/"; // model.json + metadata.json + weights(.bin)
+  const URL = "./my_model/"; 
   let model, webcam;
 
   async function initTM() {
@@ -140,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function predict() {
-    // Alleen draaien als model/webcam actief zijn
+
     if (!model || !webcam) return;
 
     const { posenetOutput } = await model.estimatePose(webcam.canvas);
@@ -149,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let pSport = 0, pRest = 0;
     prediction.forEach(p => {
       const name = (p.className || '').toLowerCase();
-      if (name.includes('sport')) pSport = p.probability; // dekt 'sporten'
+      if (name.includes('sport')) pSport = p.probability;
       if (name === 'rust')       pRest  = p.probability;
     });
 
@@ -160,7 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Eén lichte loop die alleen werkt als model/webcam bestaan
   (function loop() {
     requestAnimationFrame(loop);
     if (webcam) webcam.update();
